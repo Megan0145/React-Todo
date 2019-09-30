@@ -4,12 +4,11 @@ import React from "react";
 import Todo from "./Todo";
 
 export default function TodoList(props) {
-  const { todoList } = props;
+  const { todoList, removeTask } = props;
   return (
     <div>
       {todoList.map(todo => {
-        console.log(todo);
-        return <Todo key={todo.id} task={todo.task} complete={todo.complete} />;
+        return <Todo key={todo.id} task={todo.task} completed={todo.completed} removeTask={removeTask} />;
       })}
     </div>
   );

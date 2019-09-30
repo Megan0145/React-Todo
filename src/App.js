@@ -12,7 +12,8 @@ class App extends React.Component {
     super();
     this.state = {
       todoList: [],
-      formValue: ''
+      formValue: '',
+      completed: false
     };
   }
 
@@ -34,15 +35,26 @@ class App extends React.Component {
     })
   };
 
+  removeTask = event => {
+    console.log(event.target)
+    event.target.style.textDecoration = 'line-through';
+    this.setState({completed: true})
+  }
+  clearCompleted = event => {
+    event.preventDefault();
+    console.log('click')
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList todoList={this.state.todoList} />
+        <TodoList todoList={this.state.todoList} removeTask={this.removeTask} />
         <TodoForm
           formValue={this.state.formValue}
           onValueChange={this.onValueChange}
           onFormSubmit={this.onFormSubmit}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
